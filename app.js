@@ -1,7 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const ConnectionsConfig = require('./config/database');
 const port = 3200;
 const app = express();
+
+ConnectionsConfig.mongo.start();
 
 app.use(bodyParser.json());
 
