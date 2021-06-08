@@ -1,0 +1,1 @@
+mongodb+srv://LIVIA:<3920>@supermarket.gib9g.mongodb.net/myFirstDatabase?retryWrites=true&w=majority

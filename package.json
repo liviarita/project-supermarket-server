@@ -1,0 +1,24 @@
+{
+  "name": "project-supermarket-server",
+  "version": "1.0.0",
+  "description": "This project aims to create a Node server and a Mongo supermarket database.",
+  "main": "app.js",
+  "scripts": {
+    "start": "./node_modules/.bin/nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liviarita/project-supermarket-server.git"
+  },
+  "author": "livia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liviarita/project-supermarket-server/issues"
+  },
+  "homepage": "https://github.com/liviarita/project-supermarket-server#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7"
+  }
+}
