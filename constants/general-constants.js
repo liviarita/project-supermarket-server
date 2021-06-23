@@ -1,7 +1,5 @@
 module.exports = {
     COLLECTIONS: {
-        accounts: 'accounts',
-        clients: 'clients',
-        providers: 'providers'
+        supermarkets: 'supermarkets',
     }
 };

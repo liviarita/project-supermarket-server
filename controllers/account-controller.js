@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
-const GeneralConstants = require('../constants/general-constant');
+const GeneralConstants = require('../constants/general-constants');
 const ConnectionsConfig = require('../config/database');
 const connectionInstance = ConnectionsConfig.mongo.getInstance;
 const COLLECTIONS = GeneralConstants.COLLECTIONS;
 
-exports.listAllAccounts = async (req, res) => {
-    connectionInstance().db.collection(COLLECTIONS.accounts).find({}).toArray((error, documents) => {
+exports.listAllSupermarkets = async (req, res) => {
+    connectionInstance().db.collection(COLLECTIONS.supermarkets).find({}).toArray((error, documents) => {
         if(error){
             return res.status(400).json('error');
         }
@@ -13,25 +13,7 @@ exports.listAllAccounts = async (req, res) => {
     });
 };
 
-exports.listAllClients = async (req, res) => {
-    connectionInstance().db.collection(COLLECTIONS.clients).find({}).toArray((error, documents) => {
-        if(error){
-            return res.status(400).json('error');
-        }
-        res.json(documents);
-    });
-};
-
-exports.listAllProviders = async (req, res) => {
-    connectionInstance().db.collection(COLLECTIONS.providers).find({}).toArray((error, documents) => {
-        if(error){
-            return res.status(400).json('error');
-        }
-        res.json(documents);
-    });
-};
-
-exports.listAccountById = async (req, res) => {
+exports.listSupermarketById = async (req, res) => {
     const id = req.params.id;
     const filter = { _id: mongoose.Types.ObjectId(id)};
     const callback = (error, documents) => {
@@ -40,10 +22,10 @@ exports.listAccountById = async (req, res) => {
         }
         res.json(documents);
     };
-    connectionInstance().db.collection(COLLECTIONS.accounts).findOne(filter, callback);
+    connectionInstance().db.collection(COLLECTIONS.supermarkets).findOne(filter, callback);
 };
 
-exports.createAccount = async (req, res) => {
+exports.createSupermarket = async (req, res) => {
     const data = req.body;
     const options = {};
     const callback = (error, documentCreated) => {
@@ -52,34 +34,10 @@ exports.createAccount = async (req, res) => {
         }
         res.json(documentCreated);
     };
-    connectionInstance().db.collection(COLLECTIONS.accounts).insertOne(data, options, callback);
+    connectionInstance().db.collection(COLLECTIONS.supermarkets).insertOne(data, options, callback);
 };
 
-exports.createClient = async (req, res) => {
-    const data = req.body;
-    const options = {};
-    const callback = (error, documentCreated) => {
-        if(error){
-            return res.status(400).json(error);
-        }
-        res.json(documentCreated);
-    };
-    connectionInstance().db.collection(COLLECTIONS.clients).insertOne(data, options, callback);
-};
-
-exports.createProvider = async (req, res) => {
-    const data = req.body;
-    const options = {};
-    const callback = (error, documentCreated) => {
-        if(error){
-            return res.status(400).json(error);
-        }
-        res.json(documentCreated);
-    };
-    connectionInstance().db.collection(COLLECTIONS.providers).insertOne(data, options, callback);
-};
-
-exports.updateAccount = async (req, res) => {
+exports.updateSupermarket = async (req, res) => {
     const id = req.query.id;
     const data = {$set: req.body};
     const filter = { _id: mongoose.Types.ObjectId(id)};
@@ -90,10 +48,10 @@ exports.updateAccount = async (req, res) => {
         }
         res.json(documentUpdated);
     };
-    connectionInstance().db.collection(COLLECTIONS.accounts).updateOne(filter, data, options, callback);
+    connectionInstance().db.collection(COLLECTIONS.supermarkets).updateOne(filter, data, options, callback);
 };
 
-exports.deleteAcoount = async (req, res) => {
+exports.deleteSupermarket = async (req, res) => {
     const id = req.query.id;
     const options = {};
     const filter = { _id: mongoose.Types.ObjectId(id)};
@@ -103,6 +61,6 @@ exports.deleteAcoount = async (req, res) => {
         }
         res.json(documentDeleted);
     };
-    connectionInstance().db.collection(COLLECTIONS.accounts).deleteOne(filter, options, callback);
+    connectionInstance().db.collection(COLLECTIONS.supermarkets).deleteOne(filter, options, callback);
 };
 
